@@ -1,0 +1,10 @@
+<div>
+	<div ng-repeat="b in blogs" style=" padding-left: 10%;background-color: lavender;">
+		<!-- <img src="{{b.image}}" onerror="this.src = '/img/defaultblog.jpg'"> -->
+		<!-- <object data="{{b.image}}" type="image/png">
+		    <img src="img/defaultblog.jpg" />
+		  </object> -->
+		<h2>{{b.header | uppercase}}</h2><br/>
+		<div style="width: 65%;text-align: justify; text-justify: inter-word;" ng-bind-html="b.key" ></div>
+	</div>
+</div>

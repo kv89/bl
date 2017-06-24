@@ -1,0 +1,28 @@
+<div ng-if="!isLoggedIn">
+	<form class="form-inline" ng-submit="signin()">
+	  <div class="form-group">
+	    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+	    <input ng-model="user.email" type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+	  </div>
+	  <div class="form-group">
+	    <label class="sr-only" for="exampleInputPassword3">Password</label>
+	    <input ng-model="user.password" type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+	  </div>
+	  <!-- <div class="checkbox">
+	    <label>
+	      <input type="checkbox"> Remember me
+	    </label>
+	  </div> -->
+	  <button type="submit" class="btn btn-default">Sign in</button>
+	</form>
+</div>
+
+<div ng-if="isLoggedIn">
+	<input class="form-control input-lg" ng-model="blog.header" type="text" placeholder="Header"></input><br/>
+	<div text-angular="text-angular" name="htmlcontent" ng-model="blog.htmlcontent" ta-disabled='disabled'></div><br/>
+
+	<div>
+		<button class="btn btn-small btn-success" ng-click="save();">Save</button>
+		<button class="btn btn-small btn-success">Clear</button>
+	</div>
+</div>
