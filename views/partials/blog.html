@@ -1,10 +1,10 @@
 <div style="max-height: 100px;">
-	<div ng-repeat="b in blogs" style="tex padding-left: 10%;background-color: rgba(236, 244, 249, 0.7);">
+	<div ng-repeat="b in blogs" style="padding-left: 4%; background-color: rgba(236, 244, 249, 0.7);">
 		<!-- <img src="{{b.image}}" onerror="this.src = '/img/defaultblog.jpg'"> -->
 		<!-- <object data="{{b.image}}" type="image/png">
 		    <img src="img/defaultblog.jpg" />
 		  </object> -->
-		<h2>{{b.header | uppercase}}</h2><br/>
-		<div style="width: 65%;text-align: justify; text-justify: inter-word;" ng-bind-html="b.key" ></div>
+		<h2 style="width: 65%; text-align: center;" ">{{b.header | uppercase}}</h2><br/>
+		<div style="width: 65%;text-align: justify; text-justify: inter-word; " ng-bind-html="b.key" ></div>
 	</div>
 </div>
