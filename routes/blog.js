@@ -1,26 +1,40 @@
 /*
  * Serve JSON to our AngularJS client
  */
-var lowdb = require('lowdb');
-const fileAsync = require('lowdb/lib/storages/file-async')
-var db = lowdb('db.json', {storage: fileAsync});
+// var lowdb = require('lowdb');
+// const fileAsync = require('lowdb/lib/storages/file-async')
+// var db = lowdb('db.json', {storage: fileAsync});
 
 // var blogs = db.get('blogs');
-db.defaults({blogs : []}).write();
+//db.defaults({blogs : []}).write();
+var nedb = require("nedb"),
+	_db = new nedb({ filename: './mydb.db', autoload: true });
+
+_db.loadDatabase();
 
 exports.createBlog = function (req, res) {
   	console.log('req --- > ',req.body);
-  	db.get('blogs')
-	    .push(req.body)
-	    .last()
-	    .assign({ id: Date.now() })
-	    .write()
-	    .then(function(blog){
-	    	res.send(blog);
-	    })
+  	// db.get('blogs')
+	  //   .push(req.body)
+	  //   .last()
+	  //   .assign({ id: Date.now() })
+	  //   .write()
+	  //   .then(function(blog){
+	  //   	// res.send(blog);
+	  //   });
+
+	_db.insert(req.body, function(err, newDoc){
+		console.log("blog with id : " + newDoc._id + " created : " + newDoc.header);
+		res.send(newDoc._id);
+	});
 };
 
 exports.getAllBlogs = function(req, res){
-	const blogS = db.get('blogs').value();
-	res.send(blogS.reverse());
+	// const blogS = db.get('blogs').value();
+	_db.find({}, function(err, blogS){
+		res.send(blogS.reverse());
+	});
+	// res.send(blogS.reverse());
 }
+
+/////////////////////  ==================

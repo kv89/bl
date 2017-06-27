@@ -38,7 +38,7 @@ myApp.controller('BlogCtrl', ['$scope', '$http', function($scope, $http) {
 		method: 'GET',
 		url: '/api/blog/getAllBlogs'
 	}).then(function(data, status, headers, config) {
-		console.log('--< all > ', data);
+		console.log('--< success > ');
     	$scope.blogs = data.data;
   	}, function(data, status, headers, config) {
   		console.log('--< error > ', data);
@@ -48,6 +48,7 @@ myApp.controller('BlogCtrl', ['$scope', '$http', function($scope, $http) {
 
 myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location', function($rootScope,$scope, $http, $location) {
 	$scope.user = {};
+	$scope.blog = {};
 	$scope.signin = function (){
 		console.log(' sign req for : ', $scope.user);
 		$http({
@@ -59,7 +60,7 @@ myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location'
 		  }
 		}).then(function(data, status, headers, config) {
 	    	// $location.path( "/createBlog" );
-	    	console.log(' ->> ', data);
+	    	// console.log(' ->> ', data);
 	    	$scope.isLoggedIn = data;
 	    	$rootScope.isLoggedIn = data;
 	  	}, function(data, status, headers, config) {

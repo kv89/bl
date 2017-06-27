@@ -6,6 +6,7 @@
     "express": "3.0.0",
     "font-awesome": "^4.7.0",
     "lowdb": "^0.16.2",
+    "nedb": "^1.8.0",
     "textangular": "^1.5.16"
   }
 }

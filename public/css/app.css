@@ -30,13 +30,23 @@
 }
 
 .homeText {
-        z-index: 100;
+    z-index: 100;
     position: absolute;
-    color: white;
+    color: hsl(0, 6%, 47%);
     font-size: 24px;
     font-weight: bold;
-    left: 50%;
-    top: 50%;
+    font-style: italic;
+    /*left: 2%;*/
+    top: 25%;
+    position: fixed;
+}
+
+.aboutText {
+    color: hsl(0, 6%, 47%);
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding-top: 30px;
 }
 
 #aboutDescription
