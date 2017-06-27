@@ -50,7 +50,7 @@ myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location'
 	$scope.user = {};
 	$scope.blog = {};
 	$scope.signin = function (){
-		console.log(' sign req for : ', $scope.user);
+		// console.log(' sign req for : ', $scope.user);
 		$http({
 		  method: 'POST',
 		  url: '/api/user/signin',
