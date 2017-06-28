@@ -1,10 +1,16 @@
 <div style="max-height: 100px;">
-	<div ng-repeat="b in blogs" style="padding-left: 4%; background-color: rgba(236, 244, 249, 0.7);">
+	<div ng-repeat="b in blogs">
 		<!-- <img src="{{b.image}}" onerror="this.src = '/img/defaultblog.jpg'"> -->
 		<!-- <object data="{{b.image}}" type="image/png">
 		    <img src="img/defaultblog.jpg" />
 		  </object> -->
-		<h2 style="width: 65%; text-align: center;" ">{{b.header | uppercase}}</h2><br/>
-		<div style="width: 65%;text-align: justify; text-justify: inter-word; padding-bottom: 10px;" ng-bind-html="b.key" ></div>
+		  <div style="width: 65%; padding: 3%; background-color: rgba(236, 244, 249, 0.7);color: black; text-shadow: #585555 0px 0px 15px;">
+		<h2 style="text-align: center;" ">{{b.header | uppercase}}</h2><br/>
+		<div style="text-align: justify; text-justify: inter-word; padding-bottom: 10px;" ng-bind-html="b.key" ></div>
+		<hr style="width: 50%; background-color: black; height: 1px;" />
+		<div class="btn btn-sm"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Like</div>
+		<div class="btn btn-sm"><i class="fa fa-comment" aria-hidden="true"></i>&nbsp;Comments</div>
+		</div>
+		<br/>
 	</div>
 </div>

@@ -32,7 +32,7 @@
 .homeText {
     z-index: 100;
     position: absolute;
-    color: hsl(0, 6%, 47%);
+    /*color: hsl(0, 6%, 47%);*/
     font-size: 24px;
     font-weight: bold;
     font-style: italic;
@@ -42,7 +42,7 @@
 }
 
 .aboutText {
-    color: hsl(0, 6%, 47%);
+    /*color: hsl(0, 6%, 47%);*/
     font-size: 14px;
     font-weight: bold;
     font-style: italic;

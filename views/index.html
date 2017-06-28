@@ -30,9 +30,11 @@
         <script type="text/javascript" src="js/filters.js"></script>
         <script type="text/javascript" src="js/directives.js"></script>
 	</head>
-	<body style="background-image: url(img/Kurseong_1.jpg); background-repeat: no-repeat; background-position-x: 50%; background-attachment: fixed;  background-color: rgba(111, 115, 118, 1);">
+	<body style="background-image: url(img/Kurseong_1.jpg); background-repeat: no-repeat;     background-size: 83%;
+    background-position: center center;; background-attachment: fixed;  background-color: rgba(111, 115, 118, 1);">
 		<div ng-controller="AppCtrl" class="container">
-			<h2 style="color: #08c1c3;
+			<h2 style="
+			color: #08c1c3;
     font-size: 36px;
     font-size: 3.6rem;
     font-weight: bold;
@@ -43,11 +45,11 @@
 
 			<ul class="menu">
 				<a href="/home" class="btn btn-link">Home</a>
-				<a href="/view2" class="btn btn-link">About</a>
+				<!-- <a href="/view2" class="btn btn-link">About</a> -->
 				<a href="/blog" class="btn btn-link">Blog</a>
 				<a href="/home" ng-show="isLoggedIn" class="btn btn-link pull-right">logout</a>
 			</ul>
-			<div ng-view>
+			<div ng-view style="text-shadow: #585555 0px 0px 15px; color: black;">
 			</div>
 			<!-- <div>
 				Angular Seed App: v<span app-version></span>

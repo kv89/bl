@@ -7,6 +7,7 @@
     "font-awesome": "^4.7.0",
     "lowdb": "^0.16.2",
     "nedb": "^1.8.0",
+    "socket.io": "^2.0.3",
     "textangular": "^1.5.16"
   }
 }
