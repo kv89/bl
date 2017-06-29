@@ -38,6 +38,9 @@ app.get('/api/name', api.name);
 // Blog
 app.post('/api/blog/creatBlog', blog.createBlog);
 app.get('/api/blog/getAllBlogs', blog.getAllBlogs);
+app.post('/api/blog/like', blog.likeBlog);
+
+// users
 app.post('/api/user/signin', user.signin);
 
 

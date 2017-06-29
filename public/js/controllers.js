@@ -4,15 +4,6 @@
 
 
 myApp.controller('AppCtrl', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
-	// console.log($http);
-	// $http({method: 'GET', url: '/api/name'}).
-	// success(function(data, status, headers, config) {
- //    	$scope.name = data.name;
- //  	}).
- //  	error(function(data, status, headers, config) {
- //    	$scope.name = 'Error!'
- //  	});
-
   	$http({
 	  method: 'GET',
 	  url: '/api/name'
@@ -33,17 +24,41 @@ myApp.controller('MyCtrl2', ['$scope', '$http', function($scope, http) {
 }]);
 
 myApp.controller('BlogCtrl', ['$scope', '$http', function($scope, $http) {
-	
+	$scope.liked = {};
 	$http({
 		method: 'GET',
 		url: '/api/blog/getAllBlogs'
 	}).then(function(data, status, headers, config) {
-		console.log('--< success > ');
+		// console.log('--< success > ');
     	$scope.blogs = data.data;
   	}, function(data, status, headers, config) {
-  		console.log('--< error > ', data);
+  		// console.log('--< error > ', data);
     	$scope.blogs = [];
   	});
+
+  	$scope.like = function( blog ){
+  		if(Number.isInteger(blog.likes)){
+  			blog.likes = blog.likes+1;
+  		} else {
+  			blog.likes = 1;
+  		}
+		// console.log("liking blog : ", blog._id);
+		if( blog._id ) {
+			$http({
+				  method: 'POST',
+				  url: '/api/blog/like',
+				  data: {
+					  	_id: blog._id,
+					  	likes: blog.likes
+					  }
+			}).then(function(data, status, headers, config) {
+		    	// console.log(" --> liked : ", data);
+		  	}, function(data, status, headers, config) {
+		    	// console.log(" --> like failed : ", data);
+
+		  	});
+			}
+	}
 }]);
 
 myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location', function($rootScope,$scope, $http, $location) {
@@ -84,4 +99,5 @@ myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location'
 	    	$scope.name = 'Error!'
 	  	});
 	}
+
 }]);

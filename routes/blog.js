@@ -14,16 +14,7 @@ _db.loadDatabase();
 
 exports.createBlog = function (req, res) {
   	console.log('req --- > ',req.body);
-  	// db.get('blogs')
-	  //   .push(req.body)
-	  //   .last()
-	  //   .assign({ id: Date.now() })
-	  //   .write()
-	  //   .then(function(blog){
-	  //   	// res.send(blog);
-	  //   });
-
-	_db.insert(req.body, function(err, newDoc){
+  	_db.insert(req.body, function(err, newDoc){
 		console.log("blog with id : " + newDoc._id + " created : " + newDoc.header);
 		res.send(newDoc._id);
 	});
@@ -35,6 +26,19 @@ exports.getAllBlogs = function(req, res){
 		res.send(blogS.reverse());
 	});
 	// res.send(blogS.reverse());
+}
+
+exports.likeBlog = function(req, res){
+	console.log(req.body);
+	
+	_db.update({_id: req.body._id}, { $set: { likes: req.body.likes } }, {upsert: true}, function(doc, numRep, upsert){
+		// console.log("liked !!", doc, numRep, upsert);
+		_db.findOne({_id: req.body._id}, function(err ,doc){
+			res.send({_id: doc._id, likes: doc.likes});
+		});		
+	});
+
+	
 }
 
 /////////////////////  ==================
