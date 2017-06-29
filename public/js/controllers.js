@@ -75,7 +75,7 @@ myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location'
 		  method: 'POST',
 		  url: '/api/blog/creatBlog',
 		  data: {
-		  	key: $scope.blog.htmlcontent,
+		  	htmlData: $scope.blog.htmlcontent,
 		  	header: $scope.blog.header
 		  }
 		}).then(function(data, status, headers, config) {
