@@ -30,26 +30,36 @@
         <script type="text/javascript" src="js/filters.js"></script>
         <script type="text/javascript" src="js/directives.js"></script>
 	</head>
-	<body>
-		<div ng-controller="AppCtrl" class="container containerWidth" >
+	<body style="background-image: url(img/gray.jpg); background-position-x: 50%; background-attachment: fixed;">
+		<div ng-controller="AppCtrl" class="container">
 		<div class="containerWidth">
-			<h2 style="
-						color: #08c1c3;
+		
+			<h2 style="margin-bottom: 0px;
+						color: black;
+						background-color: rgba(236, 244, 249, 0.7);
+						border-top-left-radius: 10px;
+						border-top-right-radius: 10px;
+					font-style: italic;
 			    font-size: 36px;
 			    font-size: 3.6rem;
 			    font-weight: bold;
 			    letter-spacing: -2px;
 			    line-height: 1.25;
-			    margin: 1.25em 0 .25em;
+			    padding-left: 4%;
+			    padding-right: 4%;
 			">Pinky Chhetri </h2>			
 
-			<ul class="menu">
-				<a href="/home" class="btn btn-link">Home</a>
+			<ul class="menu" style="padding-left: 4%; border-bottom-left-radius: 10px;
+						border-bottom-right-radius: 10px;
+			    padding-right: 4%; background-color: rgba(236, 244, 249, 0.7);">
+				<a href="/home" class="btn btn-link"  style="color: black; font-weight: bold;">Home</a>
 				<!-- <a href="/view2" class="btn btn-link">About</a> -->
-				<a href="/blog" class="btn btn-link">Blog</a>
-				<a href="/home" ng-show="isLoggedIn" class="btn btn-link pull-right">logout</a>
+				<a href="/blog" class="btn btn-link" style="color: black; font-weight: bold;">Blog</a>
+				<a href="/home" ng-show="isLoggedIn" class="btn btn-link pull-right"  style="color: black; font-weight: bold;">logout</a>
 			</ul>
-			<div ng-view style="text-shadow: #585555 0px 0px 15px; color: black;">
+		
+
+			<div ng-view style="text-shadow: #585555 0px 0px 15px; color: black; ">
 			</div>
 			<!-- <div>
 				Angular Seed App: v<span app-version></span>
