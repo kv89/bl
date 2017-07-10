@@ -17,7 +17,7 @@
 	</form>
 </div>
 
-<div ng-if="!isLoggedIn">
+<div ng-if="isLoggedIn">
 	<input class="form-control input-lg" ng-model="blog.header" type="text" placeholder="Header"></input><br/>
 	<div text-angular="text-angular" name="htmlcontent" ng-model="blog.htmlcontent" ta-disabled='disabled'></div><br/>
 
