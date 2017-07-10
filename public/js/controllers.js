@@ -103,10 +103,8 @@ myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location'
 
 	
 	$scope.previewBlog = function(){
-
-		console.log($anchorScroll );
-		$scope.isPreview = true;
-		$scope.b = $scope.blog;
+		// $scope.isPreview = true;
+		// $scope.b = $scope.blog;
 
 		$location.hash('preview');
 		setTimeout(function(){
