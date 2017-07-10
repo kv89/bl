@@ -9,15 +9,13 @@
 		<div style="text-align: justify; text-justify: inter-word; padding-bottom: 10px;" ng-bind-html="b.htmlData" ></div>
 		<hr style="width: 50%; background-color: black; height: 1px;" />
 
-			<div class="btn btn-sm" ng-disabled="b.liked" ng-click="like(b); b.liked = true;">
+			<div class="btn btn-sm" ng-if="!b.liked" ng-click="like(b); b.liked = true;">
 				<i ng-show="!b.liked" class="fa fa-thumbs-up" aria-hidden="true">&nbsp;Like({{b.likes}})</i>
+			</div>
+			<div ng-if="b.liked">
 				<i ng-show="b.liked" class="fa fa-thumbs-up" aria-hidden="true" style="color: green;">&nbsp;({{b.likes}})</i>
 			</div>
-			<!-- <div class="btn btn-sm"><i class="fa fa-comment" aria-hidden="true"></i>&nbsp;Comments</div>
-			<div>
-				<textarea rows="1" style="width: 60%; height: 40pt;" placeholder="please write comments here.."></textarea>
-			</div> -->
-		
+					
 		</div>
 		<br/>
 	</div>

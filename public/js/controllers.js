@@ -61,7 +61,8 @@ myApp.controller('BlogCtrl', ['$scope', '$http', function($scope, $http) {
 	}
 }]);
 
-myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location', function($rootScope,$scope, $http, $location) {
+myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location', '$window', '$anchorScroll',
+							function($rootScope, $scope, $http, $location, $window, $anchorScroll) {
 	$scope.user = {};
 	$scope.blog = {};
 	$scope.signin = function (){
@@ -99,5 +100,19 @@ myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location'
 	    	$scope.name = 'Error!'
 	  	});
 	}
+
+	
+	$scope.previewBlog = function(){
+
+		console.log($anchorScroll );
+		$scope.isPreview = true;
+		$scope.b = $scope.blog;
+
+		$location.hash('preview');
+		setTimeout(function(){
+			$anchorScroll();
+		}, 0);
+    };
+	
 
 }]);

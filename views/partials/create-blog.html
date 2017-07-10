@@ -17,12 +17,32 @@
 	</form>
 </div>
 
-<div ng-if="isLoggedIn">
+<div ng-if="!isLoggedIn">
 	<input class="form-control input-lg" ng-model="blog.header" type="text" placeholder="Header"></input><br/>
 	<div text-angular="text-angular" name="htmlcontent" ng-model="blog.htmlcontent" ta-disabled='disabled'></div><br/>
 
 	<div>
 		<button class="btn btn-small btn-success" ng-click="save();">Save</button>
-		<button class="btn btn-small btn-success">Clear</button>
+		<button class="btn btn-small btn-success" ng-click="previewBlog();">Preview</button>
 	</div>
+
+	<div id="preview">
+		<div ng-show="isPreview" style="max-height: 100px;">
+		<!-- <div ng-repeat="b in blogs"> -->
+			
+			<div style="padding: 4%; background-color: rgba(236, 244, 249, 0.7); color: black; text-shadow: #585555 0px 0px 10px;">
+				<h2 style="text-align: center; font-style: italic;">{{b.header | uppercase}}</h2><br/>
+				<div style="text-align: justify; text-justify: inter-word; padding-bottom: 10px;" ng-bind-html="b.htmlcontent" ></div>
+				<hr style="width: 50%; background-color: black; height: 1px;" />
+
+				<div>
+					<i class="fa fa-thumbs-up" aria-hidden="true" style="color: green;">
+						&nbsp;(10)
+					</i>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+
 </div>
