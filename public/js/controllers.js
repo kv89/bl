@@ -45,19 +45,28 @@ myApp.controller('BlogCtrl', ['$scope', '$http', function($scope, $http) {
 		// console.log("liking blog : ", blog._id);
 		if( blog._id ) {
 			$http({
-				  method: 'POST',
-				  url: '/api/blog/like',
-				  data: {
-					  	_id: blog._id,
-					  	likes: blog.likes
-					  }
-			}).then(function(data, status, headers, config) {
-		    	// console.log(" --> liked : ", data);
-		  	}, function(data, status, headers, config) {
-		    	// console.log(" --> like failed : ", data);
+				method: 'GET',
+				url: 'http://ipinfo.io/json'
+			}).then(function( resp ){
+				// console.log(resp);
+				resp.data.datetime = new Date();
+				$http({
+					  method: 'POST',
+					  url: '/api/blog/like',
+					  data: {
+						  	_id: blog._id,
+						  	likes: blog.likes,
+						  	location: resp.data
+						  }
+				});
+				/*.then(function(data, status, headers, config) {
+			    	// console.log(" --> liked : ", data);
+			  	}, function(data, status, headers, config) {
+			    	// console.log(" --> like failed : ", data);
 
-		  	});
-			}
+			  	});*/
+		   	});
+		}
 	}
 }]);
 

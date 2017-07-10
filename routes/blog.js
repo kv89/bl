@@ -29,9 +29,9 @@ exports.getAllBlogs = function(req, res){
 }
 
 exports.likeBlog = function(req, res){
-	console.log(req.body);
+	// console.log(req.body);
 	
-	_db.update({_id: req.body._id}, { $set: { likes: req.body.likes } }, {upsert: true}, function(doc, numRep, upsert){
+	_db.update({_id: req.body._id}, { $set: { likes: req.body.likes }, $push: { likeStats: req.body.location} }, {upsert: true}, function(doc, numRep, upsert){
 		// console.log("liked !!", doc, numRep, upsert);
 		_db.findOne({_id: req.body._id}, function(err ,doc){
 			res.send({_id: doc._id, likes: doc.likes});
