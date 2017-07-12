@@ -1,4 +1,0 @@
-putty -> connection -> ssh -> auth - put private key file (find in downloads) ..   .ppk
-similar for filezilla ->ppk or something 
-login as ubuntu user name : -> putty - enter pinky as passphrase.. nothing for filezilla
-pchhetri97@gmail.com -> swarnika@97 / aws server
