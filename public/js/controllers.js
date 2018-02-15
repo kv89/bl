@@ -70,28 +70,38 @@ myApp.controller('BlogCtrl', ['$scope', '$http', function($scope, $http) {
 	}
 }]);
 
-myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location', '$window', '$anchorScroll',
-							function($rootScope, $scope, $http, $location, $window, $anchorScroll) {
+myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$routeParams','$http', '$location', '$window', '$anchorScroll',
+				 'loginService',
+							function($rootScope, $scope, $routeParams, $http, $location, $window, $anchorScroll, loginService) {
 	$scope.user = {};
 	$scope.blog = {};
+	console.log('to edit : ', $routeParams.id);
+	console.log('is logged in : ', loginService.isLoggedIn);
+	$scope.isLoggedIn = loginService.isLoggedIn|| false;
 	$scope.signin = function (){
+		$scope.isLoggedIn = loginService.isLoggedIn;
+
+		loginService.doLogin($scope.user.email, $scope.user.password, function( err, resp ){
+			$scope.isLoggedIn = resp;
+		});
+
 		// console.log(' sign req for : ', $scope.user);
-		$http({
-		  method: 'POST',
-		  url: '/api/user/signin',
-		  data: {
-		  	email: btoa($scope.user.email),
-		  	password: btoa($scope.user.password)
-		  }
-		}).then(function(data, status, headers, config) {
-	    	// $location.path( "/createBlog" );
-	    	// console.log(' ->> ', data);
-	    	$scope.isLoggedIn = data;
-	    	$rootScope.isLoggedIn = data;
-	  	}, function(data, status, headers, config) {
-	  		console.log(' err ->> ', data);
-	    	$scope.isLoggedIn = false;
-	  	});
+		// $http({
+		//   method: 'POST',
+		//   url: '/api/user/signin',
+		//   data: {
+		//   	email: btoa($scope.user.email),
+		//   	password: btoa($scope.user.password)
+		//   }
+		// }).then(function(data, status, headers, config) {
+	 //    	// $location.path( "/createBlog" );
+	 //    	// console.log(' ->> ', data);
+	 //    	$scope.isLoggedIn = data;
+	 //    	$rootScope.isLoggedIn = data;
+	 //  	}, function(data, status, headers, config) {
+	 //  		console.log(' err ->> ', data);
+	 //    	$scope.isLoggedIn = false;
+	 //  	});
 	}
 
 	$scope.save = function(){
@@ -122,4 +132,61 @@ myApp.controller('CreateBlogCtrl', ['$rootScope', '$scope', '$http', '$location'
     };
 	
 
+}]);
+
+myApp.controller('AdminCtrl', ['$rootScope', '$scope', '$http', '$location', '$window', '$anchorScroll','loginService',
+							function($rootScope, $scope, $http, $location, $window, $anchorScroll, loginService) {
+	$scope.page = 'admin';
+	$scope.user = {};
+	// loginService.serviceFunction();
+	// $http({
+	// 	method: 'GET',
+	// 	url: '/api/blog/getAllBlogs'
+	// }).then(function(data, status, headers, config) {
+	// 	// console.log('--< success > ');
+ //    	$scope.blogs = data.data;
+ //  	}, function(data, status, headers, config) {
+ //  		// console.log('--< error > ', data);
+ //    	$scope.blogs = [];
+ //  	});
+
+  	$scope.isLoggedIn = loginService.isLoggedIn; //checkLoggedIn();
+  	$scope.signin = function (){
+
+		loginService.doLogin($scope.user.email, $scope.user.password, 
+			function( err, resp ){
+				$scope.isLoggedIn = resp;				
+				$http({
+					method: 'GET',
+					url: '/api/blog/getAllBlogs'
+				}).then(function(data, status, headers, config) {
+					// console.log('--< success > ');
+			    	$scope.blogs = data.data;
+			    	// console.log(Object.keys(data.data[0]))
+
+			  	}, function(data, status, headers, config) {
+			  		// console.log('--< error > ', data);
+			    	$scope.blogs = [];
+			  	});
+
+			});
+	}
+
+  	console.log('isLoggedIn : ', $scope.isLoggedIn);
+
+  	$scope.deleteBlog = function(blogId){
+  		console.log('deleting blog..', blogId);
+  		$http({
+  			method: 'POST',
+  			url: '/api/blog/delete',
+  			data:{
+  				_id: blogId
+  			}
+  		}).then(function(data, status, headers, config){
+  			console.log('delete success - ', data, status, headers, config);
+  		}, 
+  		function(data, status, headers, config){
+  			console.log('err - ', data);
+  		});
+  	}
 }]);

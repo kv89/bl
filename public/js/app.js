@@ -26,6 +26,16 @@ var myApp = angular.module('myApp', ['ngRoute', 'myApp.filters', 'myApp.services
 	    			templateUrl: 'partials/create-blog', 
 	    			controller: 'CreateBlogCtrl'
 	    		})
+	    	.when('/editBlog/:id', 
+	    		{
+	    			templateUrl: 'partials/create-blog', 
+	    			controller: 'CreateBlogCtrl'
+	    		})
+	    	.when('/admin', 
+	    		{
+	    			templateUrl: 'partials/admin', 
+	    			controller: 'AdminCtrl'
+	    		})
 	    	.otherwise({redirectTo: '/home'});
 
 	    $locationProvider.html5Mode(true);

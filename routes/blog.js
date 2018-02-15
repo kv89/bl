@@ -12,8 +12,12 @@ var nedb = require("nedb"),
 
 _db.loadDatabase();
 
+exports.deleteBlog = function (req, res) {
+	console.log('deleting blog : ');
+}
+
 exports.createBlog = function (req, res) {
-  	console.log('req --- > ',req.body);
+  	//console.log('req --- > ',req.body);
   	_db.insert(req.body, function(err, newDoc){
 		console.log("blog with id : " + newDoc._id + " created : " + newDoc.header);
 		res.send(newDoc._id);
@@ -22,7 +26,7 @@ exports.createBlog = function (req, res) {
 
 exports.getAllBlogs = function(req, res){
 	// const blogS = db.get('blogs').value();
-	_db.find({}, function(err, blogS){
+	_db.find({$or: [{deleted:{$exists: false}},{deleted: false}]}, function(err, blogS){
 		res.send(blogS.reverse());
 	});
 	// res.send(blogS.reverse());
@@ -36,9 +40,13 @@ exports.likeBlog = function(req, res){
 		_db.findOne({_id: req.body._id}, function(err ,doc){
 			res.send({_id: doc._id, likes: doc.likes});
 		});		
-	});
+	});	
+}
 
-	
+exports.deleteBlog = function(req, res){
+	_db.update({_id: req.body._id}, { $set: { deleted: true } }, {upsert: true}, function(err, noDocs, upsert){
+		console.log(' -- ', err, noDocs, upsert);
+	} );
 }
 
 /////////////////////  ==================
