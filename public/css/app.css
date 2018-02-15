@@ -69,8 +69,8 @@
 
 @media only screen and (min-width: 501px) {
     div .containerWidth {
-        width: 100%;
+        /*width: 100%;
         padding-left: 15%;
-        padding-right: 15%;
+        padding-right: 15%;*/
     }
 }
